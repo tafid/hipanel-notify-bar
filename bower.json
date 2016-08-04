@@ -1,0 +1,20 @@
+{
+  "name": "hipanel-notify-bar",
+  "authors": [
+    "tofid <andreyklochok@gmail.com>"
+  ],
+  "description": "Notify bar for hipanel",
+  "main": "hipanel-notify-bar.js",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "notie": "^3.9.1"
+  }
+}
