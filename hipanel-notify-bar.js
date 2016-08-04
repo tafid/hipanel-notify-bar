@@ -1,4 +1,5 @@
-var HipanelNotifyBar = {
+var hn, HipanelNotifyBar = {
+    
     settings: {
         title: 'Would you like to try new panel?',
         yesText: 'Yes',
@@ -11,19 +12,8 @@ var HipanelNotifyBar = {
     },
 
     init: function() {
+        hn = this;
         notie.confirm(this.settings.title, this.settings.yesText, this.settings.noText, this.yesCallback, this.noCallback);
-    },
-
-    yesCallback: function() {
-        this.saveAnswer('yes', this.redirect);
-    },
-
-    noCallback: function() {
-        var _this = this;
-        var callback = function() {
-            _this._getCookie(_this.settings.cookieVar, 1);
-        };
-        this.saveAnswer('no', callback);
     },
 
     saveAnswer: function(answer, callback) {
@@ -40,12 +30,24 @@ var HipanelNotifyBar = {
         });
     },
 
+    yesCallback: function() {
+        hn.saveAnswer('yes', hn.redirect);
+    },
+
+    noCallback: function() {
+        var callback = function() {
+            hn._getCookie(_this.settings.cookieVar, 1);
+        };
+        hn.saveAnswer('no', callback);
+    },
+
     redirect: function() {
+        hn._removeCookie(this.settings.cookieVar);
         window.location.replace(this.settings.newPanelLink);
     },
 
     stayOnTheOldPanel: function() {
-        return this._getCookie(this.settings.cookieVar) === 1;
+        return hn._getCookie(this.settings.cookieVar) === 1;
     },
 
     _getCookie: function(name) {
@@ -63,6 +65,6 @@ var HipanelNotifyBar = {
     },
 
     _removeCookie: function(name) {
-        this._setCookie(name, "", -1);
+        hn._setCookie(name, "", -1);
     }
 };
