@@ -6,7 +6,6 @@
             noText: 'No',
             newPanelLink: 'https://hipanel.ahnames.com',
             saveUrl: '#',
-            checkUrl: '#',
             cookieExpiresDays: 1,
             cookieVar: 'stayOnTheOldPanel'
         };
