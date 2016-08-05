@@ -1,4 +1,4 @@
-(function($, window, document, undefined) {
+(function($, window, document) {
     var pluginName = "HipanelNotifyBar",
         defaults = {
             title: 'Would you like to try new panel?',

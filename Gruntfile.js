@@ -1,6 +1,6 @@
 module.exports = function(grunt) {
 
-    // Project configuration.
+    // project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         uglify: {
@@ -11,13 +11,25 @@ module.exports = function(grunt) {
                 src: 'src/<%= pkg.name %>.js',
                 dest: 'build/<%= pkg.name %>.min.js'
             }
+        },
+        jshint: {
+            files: ['src/**/*.js'],
+            options: {
+                curly: true,
+                eqeqeq: true,
+                eqnull: true,
+                browser: true,
+                globals: {
+                    jquery: true
+                }
+            }
         }
     });
 
-    // Load the plugin that provides the "uglify" task.
+    grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
 
-    // Default task(s).
+    // default task(s).
     grunt.registerTask('default', ['uglify']);
 
 };
