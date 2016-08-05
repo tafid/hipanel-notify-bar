@@ -28,7 +28,11 @@
                     this.settings.yesText,
                     this.settings.noText,
                     function() {
-                        _this.saveAnswer('yes', _this.redirect);
+                        var callback = function() {
+                            _this._removeCookie(_this.settings.cookieVar);
+                            window.location.replace(_this.settings.newPanelLink);
+                        };
+                        _this.saveAnswer('yes', callback);
                     },
                     function() {
                         var callback = function() {
@@ -52,10 +56,6 @@
                 },
                 success: callback
             });
-        },
-        redirect: function() {
-            this._removeCookie(this.settings.cookieVar);
-            window.location.replace(this.settings.newPanelLink);
         },
         stayOnTheOldPanel: function() {
             return this._getCookie(this.settings.cookieVar) === 1;
