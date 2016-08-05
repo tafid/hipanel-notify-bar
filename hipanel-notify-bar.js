@@ -28,7 +28,6 @@
                     this.settings.noText,
                     function() {
                         var callback = function() {
-                            _this._removeCookie(_this.settings.cookieVar);
                             window.location.replace(_this.settings.newPanelLink);
                         };
                         _this.saveAnswer('yes', callback);
