@@ -21,11 +21,28 @@
 
     Plugin.prototype = {
         init: function() {
-            notie.confirm(this.settings.title, this.settings.yesText, this.settings.noText, this.yesCallback, this.noCallback);
+            _this = this;
+            if (_this._getCookie(_this.settings.cookieVar) === undefined) {
+                notie.confirm(
+                    this.settings.title,
+                    this.settings.yesText,
+                    this.settings.noText,
+                    function() {
+                        _this.saveAnswer('yes', _this.redirect);
+                    },
+                    function() {
+                        var callback = function() {
+                            _this._setCookie(_this.settings.cookieVar, 1);
+                        };
+                        _this.saveAnswer('no', callback);
+                    }
+                );
+            }
         },
         saveAnswer: function(answer, callback) {
+            var _this = this;
             $.ajax({
-                url: this.settings.saveUrl,
+                url: _this.settings.saveUrl,
                 method: 'POST',
                 data: {
                     answer: answer
@@ -35,16 +52,6 @@
                 },
                 success: callback
             });
-        },
-        yesCallback: function() {
-            this.saveAnswer('yes', this.redirect);
-        },
-        noCallback: function() {
-            _this = this;
-            var callback = function() {
-                this._getCookie(_this.settings.cookieVar, 1);
-            };
-            this.saveAnswer('no', callback);
         },
         redirect: function() {
             this._removeCookie(this.settings.cookieVar);
