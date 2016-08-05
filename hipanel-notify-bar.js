@@ -37,7 +37,7 @@
             });
         },
         yesCallback: function() {
-            this.saveAnswer('yes', hn.redirect);
+            this.saveAnswer('yes', this.redirect);
         },
         noCallback: function() {
             _this = this;
@@ -46,7 +46,6 @@
             };
             this.saveAnswer('no', callback);
         },
-
         redirect: function() {
             this._removeCookie(this.settings.cookieVar);
             window.location.replace(this.settings.newPanelLink);
