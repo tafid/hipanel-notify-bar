@@ -21,6 +21,7 @@
     Plugin.prototype = {
         init: function() {
             _this = this;
+            var linkTitle = '<a href="' + _this.settings.newPanelLink + '" target="_blank">' + _this.settings.title + '</a>';
             if (_this._getCookie(_this.settings.cookieVar) === undefined) {
                 notie.setOptions({
                     colorSuccess: '#1F8200',
@@ -31,7 +32,7 @@
                     colorText: '#FFFFFF',
                 });
                 notie.confirm(
-                    this.settings.title,
+                    linkTitle,
                     this.settings.yesText,
                     this.settings.noText,
                     function() {
