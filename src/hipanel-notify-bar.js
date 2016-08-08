@@ -22,6 +22,14 @@
         init: function() {
             _this = this;
             if (_this._getCookie(_this.settings.cookieVar) === undefined) {
+                notie.setOptions({
+                    colorSuccess: '#1F8200',
+                    colorWarning: '#D6A14D',
+                    colorError: '#ff0000',
+                    colorInfo: '#77a6d0',
+                    colorNeutral: '#A0A0A0',
+                    colorText: '#FFFFFF',
+                });
                 notie.confirm(
                     this.settings.title,
                     this.settings.yesText,
