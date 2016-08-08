@@ -21,7 +21,7 @@
     Plugin.prototype = {
         init: function() {
             _this = this;
-            var linkTitle = '<a href="' + _this.settings.newPanelLink + '" target="_blank">' + _this.settings.title + '</a>';
+            var linkTitle = '<a id="notie-title" href="' + _this.settings.newPanelLink + '" target="_blank">' + _this.settings.title + '</a>';
             if (_this._getCookie(_this.settings.cookieVar) === undefined) {
                 notie.setOptions({
                     colorSuccess: '#1F8200',
@@ -48,6 +48,9 @@
                         _this.saveAnswer('no', callback);
                     }
                 );
+                var titleElement = document.querySelector("#notie-title");
+                titleElement.style.color = "#ffffff";
+                titleElement.style.textDecoration = "none";
             }
         },
         saveAnswer: function(answer, callback) {
